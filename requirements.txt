@@ -7,4 +7,5 @@ protobuf==3.20.3
 pypika==0.48.9
 typing-extensions==4.5.0
 numpy>=1.21.0
-langchain-chroma==0.0.12
+opentelemetry-api<2.0.0
+opentelemetry-sdk<2.0.0

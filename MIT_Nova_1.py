@@ -1,6 +1,6 @@
 import streamlit as st
 from groq import Groq
-from langchain_chroma import Chroma
+from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import SentenceTransformerEmbeddings
 import base64
 import time
