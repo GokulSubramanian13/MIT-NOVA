@@ -1,5 +1,7 @@
-groq
-langchain-chroma
-langchain-community
-sentence-transformers
-streamlit
+groq>=0.3
+langchain-chroma==0.0.12
+chromadb==0.4.15
+langchain-community==0.0.20
+sentence-transformers>=2.2.2
+streamlit>=1.28
+protobuf==3.20.3
