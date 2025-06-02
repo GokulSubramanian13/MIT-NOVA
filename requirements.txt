@@ -3,7 +3,7 @@ langchain==0.1.16  # Last stable version for Python 3.10
 langchain-community==0.0.29
 chromadb==0.4.22
 sentence-transformers==2.7.0
-pysqlite3-binary  # Critical: Fixes SQLite version issue
-protobuf==3.20.3  # Downgraded for Python 3.10 compatibility
+pysqlite3>=0.5.0  
+protobuf==3.20.3 
 groq==0.3.0
 pypdf==4.2.0  # For PDF processing
