@@ -1,8 +1,9 @@
-chromadb==0.4.22  # Latest version with Python 3.13 support
+streamlit==1.33.0
+langchain==0.1.16  # Last stable version for Python 3.10
 langchain-community==0.0.29
-sentence-transformers>=2.2.2
-protobuf==4.25.3  # Must be ≥4.22 for Python 3.13
-opentelemetry-api==1.22.0
-opentelemetry-sdk==1.22.0
-groq>=0.3
-streamlit>=1.28.0
+chromadb==0.4.22
+sentence-transformers==2.7.0
+pysqlite3-binary  # Critical: Fixes SQLite version issue
+protobuf==3.20.3  # Downgraded for Python 3.10 compatibility
+groq==0.3.0
+pypdf==4.2.0  # For PDF processing
