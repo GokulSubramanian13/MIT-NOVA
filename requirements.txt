@@ -4,5 +4,5 @@ langchain-community==0.0.32
 chromadb==0.4.22
 sentence-transformers==2.7.0
 protobuf==3.20.3
-groq==0.3.0
+groq>=0.3.0
 pypdf==4.2.0
