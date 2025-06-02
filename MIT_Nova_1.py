@@ -273,8 +273,6 @@ if 'current_chat' not in st.session_state:
     st.session_state.current_chat = str(time.time())
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = {}
-if st.session_state.current_chat not in st.session_state.chat_history:
-    st.session_state.chat_history[st.session_state.current_chat] = []
 if 'conversation' not in st.session_state:
     st.session_state.conversation = []
 
@@ -298,12 +296,13 @@ except Exception as e:
     st.error(f"Error loading logo: {str(e)}")
     logo_html = '<h3>MIT Nova</h3>'
 
+if st.session_state.current_chat not in st.session_state.chat_history:
+    st.session_state.chat_history[st.session_state.current_chat] = []
+
 def create_new_chat():
     new_chat_id = str(time.time())
-    st.session_state.update({
-        "current_chat": new_chat_id,
-        "conversation": []
-    })
+    st.session_state.current_chat = new_chat_id
+    st.session_state.conversation = []
     st.session_state.chat_history[new_chat_id] = []
 
 # ====== Sidebar ======
@@ -316,7 +315,8 @@ with st.sidebar:
     """, unsafe_allow_html=True)
     
     # New Chat Button
-    st.button("+ New chat", on_click=create_new_chat, key="new_chat_btn")
+    if st.button("+ New chat", key="new_chat_button", use_container_width=True, type="primary"):
+        create_new_chat()
     
     # Dark Mode Toggle - properly styled
     new_dark_mode = st.toggle(
