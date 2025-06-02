@@ -164,7 +164,7 @@ st.markdown(
     <div class="custom-header">
         <span>MIT NOVA - A new star in internal assistance</span>
         <span>🌟</span>
-    </div>
+    </div>s
     """,
     unsafe_allow_html=True
 )

@@ -1,6 +1,6 @@
-import sys
+'''import sys
 import pysqlite3
-sys.modules['sqlite3'] = pysqlite3
+sys.modules['sqlite3'] = pysqlite3'''
 
 import streamlit as st
 from groq import Groq
@@ -59,7 +59,7 @@ def rag_query(json_db, pdf_db, user_query, threshold=0.2, k=7):
 def set_custom_theme(dark_mode):
     theme = {
         "bg": "#343541" if dark_mode else "#ffffff",
-        "sidebar": "#202123" if dark_mode else "#f7f7f8",
+        "sidebar":  "#3E4145" if dark_mode else "#898b8e",
         "text": "#ffffff" if dark_mode else "#343541",
         "text-secondary": "#acacbe" if dark_mode else "#565869",
         "card-user": "#40414f" if dark_mode else "#f7f7f8",
@@ -68,9 +68,12 @@ def set_custom_theme(dark_mode):
         "button": "#10a37f" if dark_mode else "#10a37f",
         "button-hover": "#1a7f64" if dark_mode else "#0d8b6b",
         "input": "#40414f" if dark_mode else "#ffffff",
-        "toggle-text": "#ffffff" if dark_mode else "#343541",  # Fixed toggle text color
-        "toggle-bg": "#565869" if dark_mode else "#e5e5e5",  # Added toggle background
-        "logo-filter": "invert(100%)" if not dark_mode else "none",
+        "toggle-text": "#343541" if dark_mode else "#343541",  
+        "toggle-bg": "#565869" if dark_mode else "#e5e5e5",   
+        "logo-filter": "none",
+        "input-cursor": "#ffffff" if dark_mode else "#10a37f",
+        "input-selection-bg": "#444f60" if dark_mode else "#d2d6d4",
+        "input-selection-text": "#ffffff" if dark_mode else "#212529",
     }
     
     st.markdown(f"""
@@ -102,10 +105,15 @@ def set_custom_theme(dark_mode):
             border-radius: 6px !important;
             padding: 12px !important;
             box-shadow: none !important;
+            caret-color: var(--input-cursor) !important;
         }}
         .stTextInput>div>div>input::placeholder {{
             color: var(--text-secondary) !important;
             opacity: 1 !important;
+        }}
+        .stTextInput>div>div>input::selection {{
+            background-color: var(--input-selection-bg) !important;
+            color: var(--input-selection-text) !important;
         }}
         .stButton>button {{
             background-color: var(--button-bg) !important;
@@ -213,7 +221,14 @@ def set_custom_theme(dark_mode):
             padding: 5px;
             border-radius: 4px;
         }}
-        /* Toggle fixes */
+        .stTextArea>div>textarea {{
+            color: var(--text) !important;
+            caret-color: var(--input-cursor) !important;
+        }}
+        .stTextArea>div>textarea::selection {{
+            background-color: var(--input-selection-bg) !important;
+            color: var(--input-selection-text) !important;
+            }}
         .stToggle label p {{
             color: var(--toggle-text) !important;
             font-size: 14px !important;
@@ -251,14 +266,17 @@ def set_custom_theme(dark_mode):
     """, unsafe_allow_html=True)
 
 # ====== Session State ======
-if "conversation" not in st.session_state:
-    st.session_state.conversation = []
-if "dark_mode" not in st.session_state:
+# ====== Session State ======
+if 'dark_mode' not in st.session_state:
     st.session_state.dark_mode = False
-if "current_chat" not in st.session_state:
-    st.session_state.current_chat = None
-if "chat_history" not in st.session_state:
+if 'current_chat' not in st.session_state:
+    st.session_state.current_chat = str(time.time())
+if 'chat_history' not in st.session_state:
     st.session_state.chat_history = {}
+if st.session_state.current_chat not in st.session_state.chat_history:
+    st.session_state.chat_history[st.session_state.current_chat] = []
+if 'conversation' not in st.session_state:
+    st.session_state.conversation = []
 
 # ====== Page Config ======
 st.set_page_config(
@@ -275,10 +293,18 @@ set_custom_theme(st.session_state.dark_mode)
 try:
     with open("logo.png", "rb") as image_file:
         logo = base64.b64encode(image_file.read()).decode()
-    logo_html = f'<img src="data:image/png;base64,{logo}" alt="MIT Nova Logo">'
+        logo_html = f'<div style="background: white; padding: 5px; border-radius: 4px; display: inline-block;"><img src="data:image/png;base64,{logo}" alt="MIT Nova Logo" style="max-width: 100%; height: auto;"></div>'
 except Exception as e:
     st.error(f"Error loading logo: {str(e)}")
     logo_html = '<h3>MIT Nova</h3>'
+
+def create_new_chat():
+    new_chat_id = str(time.time())
+    st.session_state.update({
+        "current_chat": new_chat_id,
+        "conversation": []
+    })
+    st.session_state.chat_history[new_chat_id] = []
 
 # ====== Sidebar ======
 with st.sidebar:
@@ -290,10 +316,7 @@ with st.sidebar:
     """, unsafe_allow_html=True)
     
     # New Chat Button
-    if st.button("+ New chat", key="new_chat", use_container_width=True, type="primary"):
-        st.session_state.current_chat = str(time.time())
-        st.session_state.conversation = []
-        st.session_state.chat_history[st.session_state.current_chat] = []
+    st.button("+ New chat", on_click=create_new_chat, key="new_chat_btn")
     
     # Dark Mode Toggle - properly styled
     new_dark_mode = st.toggle(
@@ -423,12 +446,12 @@ with st.container():
             """, unsafe_allow_html=True)
         
         # Rerun to update the chat history sidebar
-        st.rerun()
+        st.rerun() 
 
 # Footer
 st.markdown("""
 <div style="text-align: center; color: var(--text-secondary); font-size: 12px; padding: 16px;">
-    MIT Nova may produce inaccurate information about people, places, or facts.
+    MIT Nova – A new star in internal assistance 🌟
 </div>
 """, unsafe_allow_html=True)
  
