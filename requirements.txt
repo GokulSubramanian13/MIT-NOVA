@@ -6,3 +6,4 @@ sentence-transformers==2.7.0
 protobuf==3.20.3
 groq>=0.3.0
 pypdf==4.2.0
+torch>=2.0.0
