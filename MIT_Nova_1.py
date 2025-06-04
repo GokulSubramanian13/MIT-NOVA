@@ -11,7 +11,7 @@ import time
 import os
 
 # Initialize Groq Client
-client = Groq(api_key="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")
+client = Groq(api_key="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")
 
 # Load vector DBs
 try:
