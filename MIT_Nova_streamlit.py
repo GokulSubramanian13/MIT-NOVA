@@ -24,7 +24,7 @@ DB_CONFIG = {
         "jq_schema": ".[] | {question: .question, answer: .answer}"
     },
     "pdf": {
-        "data_path": "./Employee_Handbook-V4.pdf",
+        "data_path": "./Employee Handbook-V4.pdf",
         "db_path": "./streamlit_pdf_db"
     }
 }
