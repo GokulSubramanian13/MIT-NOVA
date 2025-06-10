@@ -45,14 +45,14 @@ def initialize_databases():
         
         # Check if database exists
         if Path(db_path).exists() and any(Path(db_path).iterdir()):
-            st.info(f"Loading existing {db_type.upper()} database...")
+            #st.info(f"Loading existing {db_type.upper()} database...")
             databases[db_type] = Chroma(
                 persist_directory=db_path,
                 embedding_function=embeddings
             )
         else:
             try:
-                st.info(f"Creating new {db_type.upper()} database...")
+                #st.info(f"Creating new {db_type.upper()} database...")
                 
                 # Load documents
                 if db_type == "json":
