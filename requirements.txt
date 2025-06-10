@@ -8,3 +8,4 @@ chromadb
 pypdf
 jq
 tiktoken
+protobuf==3.20.*
