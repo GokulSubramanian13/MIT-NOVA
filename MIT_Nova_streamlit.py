@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 
 # Initialize Groq Client (use Streamlit secrets)
-client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+client = Groq(api_key="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")
 
 # Database configuration
 DB_CONFIG = {
