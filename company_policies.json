@@ -40,12 +40,16 @@
         "answer" : "Contact - Shaik Magdhum Nawaz(Email : shaik.nawaz@mastechdigital.com)(Position : Director - Innovation)"
     },
     {
-        "question":"Who is the Pre sales lead",
+        "question":"Who is the Pre-sales lead in Mastech Infotrellis",
         "answer":"Subhopriyo Das, EmailID: subhopriyo.das@mastechdigital.com"
     },
     {
         "question":"who is the country head of Mastech Infotrellis, India / Senior Vice President & Head - Global delivery",
         "answer":"Lavanya Ramkumar, EmailID: lavanya@mastechdigital.com"
+    },
+    {
+        "question":"Mail ID to send the referral resume",
+        "answer": "employeereferrals@mastechdigital.com"
     }
 
 ]
