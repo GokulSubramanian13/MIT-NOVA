@@ -501,7 +501,7 @@ with st.container():
         with chat_container:
             st.markdown(f"""
             <div class="chat-message chat-message-user">
-                <div class="chat-message-avatar chat-message-avatar-user">Prompt</div>
+                <div class="chat-message-avatar chat-message-avatar-user">U</div>
                 <div class="chat-message-content">{query}</div>
             </div>
             """, unsafe_allow_html=True)
@@ -510,7 +510,7 @@ with st.container():
         with chat_container:
             typing_indicator = st.markdown("""
             <div class="chat-message chat-message-bot">
-                <div class="chat-message-avatar chat-message-avatar-bot">Answer</div>
+                <div class="chat-message-avatar chat-message-avatar-bot">N</div>
                 <div class="chat-message-content">
                     <div class="spinner"></div>
                 </div>
