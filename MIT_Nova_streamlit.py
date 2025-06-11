@@ -13,7 +13,7 @@ import time
 import os
 from pathlib import Path
 
-# Initialize Groq Client (use Streamlit secrets)
+# Initialize Groq Client
 client = Groq(api_key="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")
 
 # Database configuration
@@ -32,7 +32,7 @@ DB_CONFIG = {
 # Initialize vector databases
 @st.cache_resource(show_spinner=False)
 def initialize_databases():
-    """Initialize or load Chroma vector databases"""
+    #Initialize or load Chroma vector databases
     embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
     databases = {}
     
@@ -501,7 +501,7 @@ with st.container():
         with chat_container:
             st.markdown(f"""
             <div class="chat-message chat-message-user">
-                <div class="chat-message-avatar chat-message-avatar-user">U</div>
+                <div class="chat-message-avatar chat-message-avatar-user">Prompt</div>
                 <div class="chat-message-content">{query}</div>
             </div>
             """, unsafe_allow_html=True)
@@ -510,7 +510,7 @@ with st.container():
         with chat_container:
             typing_indicator = st.markdown("""
             <div class="chat-message chat-message-bot">
-                <div class="chat-message-avatar chat-message-avatar-bot">N</div>
+                <div class="chat-message-avatar chat-message-avatar-bot">Answer</div>
                 <div class="chat-message-content">
                     <div class="spinner"></div>
                 </div>
